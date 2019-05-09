@@ -1,0 +1,43 @@
+---
+title: "strange html_table result"
+author: "ken chen"
+date: "2019.5.7"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Strang html_table result (data.frame with "\t" & "\n")  
+
+
+
+```{r cars}
+library(xml2)
+library(rvest)
+rd <- read_html("https://www.spotrac.com/mlb/boston-red-sox/payroll/")
+
+rd
+```
+```{r node}
+node <- html_node(rd,css=".teams")
+node
+```
+
+
+
+```{r node2}
+x<- html_node(node,css=".datatable")
+x
+```
+
+```{r strange table}
+
+html_table(x)
+# what's wrong with the first column ??
+```
+
+
